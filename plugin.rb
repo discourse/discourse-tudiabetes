@@ -12,3 +12,13 @@ register_css <<CSS
   text-decoration: underline;
 }
 CSS
+
+after_initialize do
+  require_dependency File.expand_path('../lib/no_group_constraint.rb', __FILE__)
+
+  Discourse::Application.routes.prepend do
+    # A lot of Ning urls use "group" and "groups" as a synonym for "topic". Stop showing access denied page.
+    get '/groups/:id', to: redirect('http://www.tudiabetes.org/forum'), constraints: NoGroupConstraint.new
+    get '/group/:id', to: redirect('http://www.tudiabetes.org/forum'), constraints: NoGroupConstraint.new
+  end
+end
