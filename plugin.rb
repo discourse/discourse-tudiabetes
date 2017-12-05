@@ -18,7 +18,7 @@ after_initialize do
 
   Discourse::Application.routes.prepend do
     # A lot of Ning urls use "group" and "groups" as a synonym for "topic". Stop showing access denied page.
-    get '/groups/:id', to: redirect('http://www.tudiabetes.org/forum'), constraints: NoGroupConstraint.new
-    get '/group/:id', to: redirect('http://www.tudiabetes.org/forum'), constraints: NoGroupConstraint.new
+    get '/groups/:id', to: redirect('https://forum.tudiabetes.org'), constraints: NoGroupConstraint.new
+    get '/group/:id', to: redirect('https://forum.tudiabetes.org'), constraints: NoGroupConstraint.new
   end
 end
