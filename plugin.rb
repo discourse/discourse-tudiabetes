@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # name: discourse-tudiabetes
 # about: Customizations for www.tudiabetes.org/forum
 # version: 0.1
@@ -14,11 +15,15 @@ register_css <<CSS
 CSS
 
 after_initialize do
-  require_dependency File.expand_path('../lib/no_group_constraint.rb', __FILE__)
+  require_dependency File.expand_path("../lib/no_group_constraint.rb", __FILE__)
 
   Discourse::Application.routes.prepend do
     # A lot of Ning urls use "group" and "groups" as a synonym for "topic". Stop showing access denied page.
-    get '/groups/:id', to: redirect('https://forum.tudiabetes.org'), constraints: NoGroupConstraint.new
-    get '/group/:id', to: redirect('https://forum.tudiabetes.org'), constraints: NoGroupConstraint.new
+    get "/groups/:id",
+        to: redirect("https://forum.tudiabetes.org"),
+        constraints: NoGroupConstraint.new
+    get "/group/:id",
+        to: redirect("https://forum.tudiabetes.org"),
+        constraints: NoGroupConstraint.new
   end
 end
