@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class NoGroupConstraint
   def matches?(request)
     return false unless request.format.html?
